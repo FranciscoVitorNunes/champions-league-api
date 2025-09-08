@@ -1,5 +1,13 @@
-import { Request, Response } from "express"
+import { noContent, ok } from "../utils/http-helper";
 
-export const getPlayerService = async (req: Request, res: Response) =>{
-    res.json({"": ""})
+export const getPlayerService = async () =>{
+    const data = {"ss":"aa"}
+    let response = null
+
+    if(data){
+        response = await ok(data);
+    }else{
+        response = await noContent();
+    }
+    return response;
 }

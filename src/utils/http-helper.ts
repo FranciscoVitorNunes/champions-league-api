@@ -9,3 +9,10 @@ export const ok = async(data: any): Promise<httpResponse> =>{
         body: data
     }
 }
+
+export const noContent = async(): Promise<httpResponse> =>{
+    return{
+        statusCode: 202,
+        body: null
+    }
+}
