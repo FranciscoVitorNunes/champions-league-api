@@ -1,4 +1,4 @@
-import { findAllPlayers } from "../repositories/player-repository";
+import { findAllPlayers, getPlayerById } from "../repositories/player-repository";
 import { noContent, ok } from "../utils/http-helper";
 
 export const getPlayerService = async () =>{
@@ -12,3 +12,15 @@ export const getPlayerService = async () =>{
     }
     return response;
 }
+export const getPlayerByIdService = async(id: number) =>{
+    const data = await getPlayerById(id)
+    let response = null
+
+    if(data){
+        response = await ok(data);
+    }else{
+        response = await noContent();
+    }
+    return response;
+}
+
