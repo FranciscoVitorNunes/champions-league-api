@@ -35,4 +35,3 @@ export const patchPlayer = async(req:Request, res:Response)=>{
     res.status(httpResponse.statusCode).json(httpResponse.body);
 }
 
-

@@ -36,10 +36,14 @@ export const createPlayerService = async(player: playerUnique) =>{
     }
 }
 export const deletePlayerService = async(id: number) =>{
-    await deletePlayer(id)
+    const isDelete = await deletePlayer(id)
     let response = null
-    
-    response = await ok({message: "Deleted"});
+    if(isDelete){
+        response = await ok({message: "Deleted"});
+    }else{
+        response = await badRequest();
+    }
+
     return response;
 }
 
