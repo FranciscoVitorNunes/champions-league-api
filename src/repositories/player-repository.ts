@@ -201,3 +201,7 @@ export const findAllPlayers = async(): Promise<playerUnique[] >=>{
 export const getPlayerById = async(id:number): Promise<playerUnique | undefined>=>{
     return database.find( player => player.id == id)
 }
+
+export const insertPlayer = async(player: playerUnique) =>{
+    database.push(player)
+}
