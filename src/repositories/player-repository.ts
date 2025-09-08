@@ -205,3 +205,10 @@ export const getPlayerById = async(id:number): Promise<playerUnique | undefined>
 export const insertPlayer = async(player: playerUnique) =>{
     database.push(player)
 }
+
+export const deletePlayer = async(id: number)=>{
+    const index = database.findIndex((player) => player.id == id)
+    if(index !==-1){
+        database.splice(index, 1)
+    }
+}
