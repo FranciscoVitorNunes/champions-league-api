@@ -1,8 +1,4 @@
-interface playerUnique{
-    id: number,
-    name: string
-}
-
+import { playerUnique } from "../models/player-model";
 const database: playerUnique[]=[
     {id:1, name:"messi"},
     {id:2, name:"CR7"}
