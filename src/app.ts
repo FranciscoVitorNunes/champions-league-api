@@ -1,10 +1,9 @@
 import express, {Request, Response, json} from 'express'
+import router from './routes';
 
 export function createApp(){
     const app = express();
     app.use(json());
-    app.get("/", (req: Request, res: Response)=>{
-        res.json({"ola":" mundo!"})
-    });
+    app.use("/api", router)
     return app;
 }
