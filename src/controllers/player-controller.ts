@@ -1,12 +1,16 @@
 import { Request, Response } from "express";
 import { getPlayerService, getPlayerByIdService } from "../services/service-player";
 
-const getPlayer = async(req: Request, res: Response)=>{
+export const getPlayer = async(req: Request, res: Response)=>{
     const httpResponse = await getPlayerService();
+    
+    res.status(httpResponse.statusCode).json(httpResponse.body);
+}
+export const getPlayerBiId = async(req:Request, res:Response)=>{
+    const id = parseInt(req.params.id)
+    const httpResponse = await getPlayerByIdService(id);
     
     res.status(httpResponse.statusCode).json(httpResponse.body);
 }
 
 
-
-export default getPlayer
