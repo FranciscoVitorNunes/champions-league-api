@@ -27,17 +27,27 @@ Uma API RESTful para gerenciamento de jogadores de futebol inspirada na Champion
 ``` text
 champions-league-api/
 ├── src/
-│   ├── controllers/          # Controladores das rotas
+│   ├── controllers/         # Controladores das rotas
 │   │   ├── player-controller.ts
 │   │   └── clubs-controller.ts
-│   ├── services/            # Lógica de negócio
-│   │   ├── service-player.ts
-│   │   └── service-clubs.ts
+│   ├── data/                # Dados
+│   │   └── clubs.json
 │   ├── models/              # Modelos de dados
+│   │   ├── club-model.ts
+│   │   ├── http-response-model.ts
+│   │   ├── player-model.ts
 │   │   └── statistics-player-model.ts
-│   ├── server.ts            # servidor da aplicação
+│   ├── repositories/        # Repositórios de dados
+│   │   ├── clubsclubs-repository.ts
+│   │   └── player-repository.ts
+│   ├── services/            # Lógica de negócio
+│   │   ├── service-clubs.ts
+│   │   └── service-player.ts
+│   ├── utils/               # Status code
+│   │   └── http-helper.ts
 │   ├── app.ts               # Ponto de entrada da aplicação
-│   └── routes.ts            # Endpoints da aplicação
+│   ├── routes.ts            # Endpoints da aplicação
+│   └── server.ts            # servidor da aplicação
 ├── package.json
 ├── tsconfig.json
 └── README.md
@@ -51,7 +61,7 @@ champions-league-api/
 ### Passos de Instalação
 1.Clone o repositório
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/FranciscoVitorNunes/champions-league-api.git
 cd champions-league-api
 ```
 2.Instale as dependências
@@ -62,107 +72,25 @@ npm install
 ```bash
 npm run start:dev
 ```
-4.Ou compile e execute em produção
+4.Ou execute em modo assistido
 ```bash
-npm run build
-npm start
+npm run start:watch
 ```
 ## 🌐 Endpoints da API
 
 Jogadores
 Método	Endpoint	Descrição
-GET	/players	Retorna todos os jogadores
-GET	/players/:id	Retorna um jogador específico
-POST	/players	Cria um novo jogador
-PATCH	/players/:id	Atualiza um jogador existente
-DELETE	/players/:id	Remove um jogador
+- GET	/players	Retorna todos os jogadores
+- GET	/players/:id	Retorna um jogador específico
+- POST	/players	Cria um novo jogador
+- PATCH	/players/:id	Atualiza um jogador existente
+- DELETE	/players/:id	Remove um jogador
 
 Clubes
 Método	Endpoint	Descrição
-GET	   /clubes	  Retorna todos os clubes disponíveis
-## 📋 Exemplos de Uso
-Obter todos os jogadores
-```bash
-curl http://localhost:3333/players
-```
-Obter jogador por ID
-```bash
-curl http://localhost:3333/players/1
-```
-Criar novo jogador
-```bash
-curl -X POST http://localhost:3333/players \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Novo Jogador",
-    "club": "Novo Clube",
-    "nacionality": "Brasil",
-    "position": "Forward",
-    "statistic": {
-      "Overall": 85,
-      "Pace": 80,
-      "Shooting": 75,
-      "Passing": 82,
-      "Dribbling": 88,
-      "Defending": 40,
-      "Physical": 70
-    }
-  }'
-```
-Atualizar jogador
-```bash
-curl -X PATCH http://localhost:3333/players/1 \
-  -H "Content-Type: application/json" \
-  -d '{
-    "statistic": {
-      "Overall": 86
-    }
-  }'
-```
-Deletar jogador
-```bash
-curl -X DELETE http://localhost:3333/players/1
-```
-Obter clubes
-```bash
-curl http://localhost:3333/clubes
-```
-## 📊 Tipos de Dados
-Jogador
-```typescript
-interface Player {
-  id: number;
-  name: string;
-  club: string;
-  nacionality: string;
-  position: string;
-  statistic: PlayerStatistics;
-}
+- GET	   /clubes	  Retorna todos os clubes disponíveis
 
-interface PlayerStatistics {
-  Overall: number;
-  Pace: number;
-  Shooting: number;
-  Passing: number;
-  Dribbling: number;
-  Defending: number;
-  Physical: number;
-}
-```
 
-## 📜 Scripts Disponíveis
-```bash
-# Desenvolvimento
-npm run dev          # Executa com hot-reload
-
-# Build
-npm run build        # Compila TypeScript
-npm start            # Executa versão compilada
-
-# TypeScript
-npm run tsc          # Compilação única
-npm run tsc:watch    # Compilação com watch
-```
 ## 🤝 Contribuição
 1.Faça um fork do projeto
 
